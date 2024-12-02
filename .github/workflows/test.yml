@@ -36,3 +36,4 @@ jobs:
           body: 'El flujo de trabajo de tests se ejecutó correctamente en el repositorio.'
           to: ${{ secrets.GMAIL_USERNAME }}
           from: ${{ secrets.GMAIL_USERNAME }}
+          
