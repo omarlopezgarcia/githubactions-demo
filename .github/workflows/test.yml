@@ -25,7 +25,7 @@ jobs:
         run: npm run test
 
       - name: Send success email if tests pass
-        if: success()
+        if: success()  # Esto solo se ejecutará si las pruebas son exitosas
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: 'smtp.sendgrid.net'
