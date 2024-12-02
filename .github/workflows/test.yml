@@ -1,4 +1,4 @@
-name: Run Tests on Main Branch
+name: Run Tests and Send Notifications
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -15,13 +16,23 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '16'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Set execute permission on Jest
-        run: chmod +x ./node_modules/.bin/jest
-
       - name: Run tests
         run: npm run test
+
+      - name: Send success email if tests pass
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: 'smtp.sendgrid.net'
+          server_port: 587
+          username: 'apikey'
+          password: ${{ secrets.SENDGRID_API_KEY }}
+          subject: 'Tests Passed Successfully 🚀'
+          body: 'El flujo de trabajo de tests se ejecutó correctamente en el repositorio.'
+          to: 'omar.lopez@vallegrande.edu.pe'
+          from: 'omar.lopez@vallegrande.edu.pe'
