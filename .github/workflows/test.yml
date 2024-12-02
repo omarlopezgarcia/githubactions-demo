@@ -28,11 +28,11 @@ jobs:
         if: success()
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: 'smtp.gmail.com'
-          server_port: 587
-          username: 'omar.lopez@vallegrande.edu.pe'
-          password: 'omarlopezgarcia'
+          server_address: 'smtp.mailgun.org'  # Mailgun SMTP server address
+          server_port: 587                    # SMTP port for Mailgun
+          username: 'postmaster@${{ secrets.MAILGUN_DOMAIN }}'  # Mailgun username (postmaster)
+          password: ${{ secrets.MAILGUN_API_KEY }}  # API key as password
           subject: 'Tests Passed Successfully 🚀'
           body: 'El flujo de trabajo de tests se ejecutó correctamente en el repositorio.'
-          to: 'omar.lopez@vallegrande.edu.pe'
-          from: 'omar.lopez@vallegrande.edu.pe'
+          to: 'omar.lopez@vallegrande.edu.pe'  # Change this to the recipient's email address
+          from: 'omar.lopez@vallegrande.edu.pe'   # Change this to your Mailgun domain email (e.g. postmaster@yourdomain)
