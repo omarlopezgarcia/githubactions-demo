@@ -30,10 +30,10 @@ jobs:
         with:
           server_address: 'smtp.gmail.com'
           server_port: 587
-          username: ${{ secrets.GMAIL_USERNAME }}
+          username: 'omar.lopez@vallegrande.edu.pe'
           password: ${{ secrets.GMAIL_PASSWORD }}
           subject: 'Tests Passed Successfully 🚀'
           body: 'El flujo de trabajo de tests se ejecutó correctamente en el repositorio.'
-          to: ${{ secrets.GMAIL_USERNAME }}
-          from: ${{ secrets.GMAIL_USERNAME }}
-          
+          to: 'omar.lopez@vallegrande.edu.pe'
+          from: 'omar.lopez@vallegrande.edu.pe'
+
