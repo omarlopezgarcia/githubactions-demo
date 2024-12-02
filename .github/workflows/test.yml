@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Install dependencies
         run: npm ci
@@ -25,18 +25,14 @@ jobs:
         run: npm run test
 
       - name: Send success email if tests pass
-        if: success()  # Esto solo se ejecutará si las pruebas son exitosas
+        if: success()
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: 'smtp.sendgrid.net'
+          server_address: 'smtp.gmail.com'
           server_port: 587
-          username: 'apikey'  # Siempre 'apikey' como usuario
-          password: ${{ secrets.SENDGRID_API_KEY }}
+          username: ${{ secrets.GMAIL_USERNAME }}
+          password: ${{ secrets.GMAIL_PASSWORD }}
           subject: 'Tests Passed Successfully 🚀'
           body: 'El flujo de trabajo de tests se ejecutó correctamente en el repositorio.'
-          html_body: |
-            <h1>¡Los Tests han pasado exitosamente! 🎉</h1>
-            <p>El flujo de trabajo de tests en el repositorio <strong>${{ github.repository }}</strong> se ejecutó correctamente.</p>
-            <p>¡Todo está listo para continuar con el despliegue!</p>
-          to: 'omar.lopez@vallegrande.edu.pe'  # Dirección verificada
-          from: 'omar.lopez@vallegrande.edu.pe'  # Dirección verificada
+          to: ${{ secrets.GMAIL_USERNAME }}
+          from: ${{ secrets.GMAIL_USERNAME }}
