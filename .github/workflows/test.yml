@@ -34,7 +34,6 @@ jobs:
           password: ${{ secrets.MAILGUN_API_KEY }}
           subject: 'Tests Passed Successfully 🚀'
           body: 'El flujo de trabajo de tests se ejecutó correctamente en el repositorio.'
-          to: 'omar.lopez@vallegrande.edu.pe'
+          to: 'omarlopezgarcia35@gmail.com'
           from: 'omar.lopez@vallegrande.edu.pe'
 
-          
