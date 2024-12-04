@@ -3,7 +3,7 @@ name: Run Tests and Send Notifications
 on:
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   test:
